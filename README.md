@@ -21,7 +21,7 @@ Then within the project directory just type
     
 Caveats
 -------
-All routes are hardwired to localhost in the frontend. Thus you can only run the application on the same maschine.
+All routes are hardwired to localhost in the frontend. Thus you can only run the application on the same machine.
 In a real application we would also separate the frontend and deliver it from a dedicated HTTP server,
 reducing the number of requests for the backend.
 
