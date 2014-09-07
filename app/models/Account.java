@@ -7,7 +7,10 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * @author <a href="mailto:alexander.hanschke@techdev.de">Alexander Hanschke</a>
+ * The domain model for user accounts.
+ * Handling accounts should be done in a dedicated account controller eventually.
+ *
+ * @author Alexander Hanschke
  */
 @Entity
 public class Account extends Model {

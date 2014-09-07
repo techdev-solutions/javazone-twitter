@@ -10,7 +10,9 @@ import javax.persistence.ManyToOne;
 import java.util.Date;
 
 /**
- * @author <a href="mailto:alexander.hanschke@techdev.de">Alexander Hanschke</a>
+ * The domain model for user accounts.
+ *
+ * @author Alexander Hanschke
  */
 @Entity
 public class Message extends Model {

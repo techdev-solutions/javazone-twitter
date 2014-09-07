@@ -11,7 +11,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @author <a href="mailto:alexander.hanschke@techdev.de">Alexander Hanschke</a>
+ * An Akka actor to inform listeners about new messages.
+ * This actor is invoked by the {@code Messages} controller upon a message has been created.
+ * Notifications are sent via a WebSocket to all registered isteners.
+ *
+ * @author Alexander Hanschke
  */
 public class WebSocketActor extends UntypedActor {
 

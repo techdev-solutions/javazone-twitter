@@ -14,7 +14,9 @@ import play.mvc.WebSocket;
 import java.util.Date;
 
 /**
- * @author <a href="mailto:alexander.hanschke@techdev.de">Alexander Hanschke</a>
+ * The main controller for handling messages.
+ *
+ * @author Alexander Hanschke
  */
 public class Messages extends Controller {
 
