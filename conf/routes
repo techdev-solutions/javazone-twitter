@@ -1,0 +1,8 @@
+# Pages
+GET         /alexhanschke             controllers.Messages.timeline()
+
+# API
+GET         /:account/messages        controllers.Messages.byAccount(account)
+POST        /:account/messages        controllers.Messages.create(account)
+GET         /socket                   controllers.Messages.socket()
+GET         /assets/*file             controllers.Assets.at(path="/public", file)
