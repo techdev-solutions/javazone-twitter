@@ -14,9 +14,10 @@ import static play.test.Helpers.*;
 
 
 /**
-* A couple of different tests to demo the capabilities of Play.
-*
-*/
+ * A couple of different tests to demo the capabilities of Play.
+ *
+ * @author Alexander Hanschke
+ */
 public class ApplicationTest extends WithApplication {
 
     @Test
