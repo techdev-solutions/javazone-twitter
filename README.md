@@ -13,7 +13,7 @@ The application makes use of the following:
 
 Running the application
 -----------------------
-You need Java 8 and [Typesafe Activator](https://typesafe.com/activator) to run the application.
+You need Java 8 and [Typesafe Activator](https://typesafe.com/activator) (bundled in this app) to run the application.
 
 Then within the project directory just type
 
