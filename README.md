@@ -1,8 +1,5 @@
 A Twitter-like application using Play Framework
 ==============================================
-
-Overview
---------
 ![Overview](/overview.png?raw=true "Overview")
 
 
@@ -32,4 +29,4 @@ By separating the frontend and the backend you might quickly have to deal with [
 and adding routes to handle Preflight Requests using OPTIONS.
 
 Although there is already the concept of an account, there is no real authentication/authorization.
-If you want to learn more about it visit [Dedbolt 2](https://github.com/schaloner/deadbolt-2) or [SecureSocial](http://securesocial.ws/) if you want to integrate with Facebook, Twitter & Co.           
+If you want to learn more about it visit [Deadbolt 2](https://github.com/schaloner/deadbolt-2) or [SecureSocial](http://securesocial.ws/) if you want to integrate with Facebook, Twitter & Co.           
