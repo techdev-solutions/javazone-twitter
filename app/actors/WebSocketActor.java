@@ -48,8 +48,9 @@ public class WebSocketActor extends UntypedActor {
     }
 
     private void broadcast(Message message) {
+        String json = Json.toJson(message).toString();
         for (ActorRef channel : channels) {
-            channel.tell(Json.toJson(message).toString(), self());
+            channel.tell(json, self());
         }
     }
 }
