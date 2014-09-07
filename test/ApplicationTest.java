@@ -1,44 +1,76 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import org.junit.*;
-
-import play.mvc.*;
-import play.test.*;
-import play.data.DynamicForm;
-import play.data.validation.ValidationError;
-import play.data.validation.Constraints.RequiredValidator;
-import play.i18n.Lang;
-import play.libs.F;
-import play.libs.F.*;
+import models.Account;
+import models.Message;
+import org.junit.Test;
+import play.libs.ws.WS;
+import play.mvc.Result;
+import play.test.WithApplication;
 import play.twirl.api.Content;
 
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
+import static org.fest.assertions.Assertions.assertThat;
 import static play.test.Helpers.*;
-import static org.fest.assertions.Assertions.*;
 
 
 /**
-*
-* Simple (JUnit) tests that can call all parts of a play app.
-* If you are interested in mocking a whole application, see the wiki for more details.
+* A couple of different tests to demo the capabilities of Play.
 *
 */
-public class ApplicationTest {
+public class ApplicationTest extends WithApplication {
 
     @Test
-    public void simpleCheck() {
-        int a = 1 + 1;
-        assertThat(a).isEqualTo(2);
+    public void renderTimeline() {
+        Content html = views.html.timeline.render();
+        assertThat(contentType(html)).isEqualTo("text/html");
+        assertThat(contentAsString(html)).contains("Fork me on GitHub");
     }
 
     @Test
-    public void renderTemplate() {
-        Content html = views.html.index.render("Your new application is ready.");
-        assertThat(contentType(html)).isEqualTo("text/html");
-        assertThat(contentAsString(html)).contains("Your new application is ready.");
+    public void saveAccount() {
+        assertThat(Account.find.all()).hasSize(1);
+        john().save();
+        assertThat(Account.find.all()).hasSize(2);
+    }
+
+    @Test
+    public void saveMessage() {
+        Account john = john();
+        john.save();
+
+        assertThat(john.messages()).isEmpty();
+
+        Message message = new Message();
+        message.timestamp = new Date();
+        message.content = "Test Message by John";
+        message.account = john;
+        message.save();
+
+        assertThat(Account.byUsername("therealjohn").messages()).hasSize(1);
+    }
+
+    @Test
+    public void testInServer() {
+        running(testServer(3333), () -> {
+            assertThat(
+                WS.url("http://localhost:3333/alexhanschke/messages").get().get(5, TimeUnit.SECONDS).getStatus()
+            ).isEqualTo(OK);
+        });
+    }
+
+    @Test
+    public void testBadRoute() {
+        Result result = route(fakeRequest(GET, "/some/fake/route"));
+        assertThat(result).isNull();
+    }
+
+    private Account john() {
+        Account john = new Account();
+        john.firstname = "John";
+        john.lastname = "Doe";
+        john.username = "therealjohn";
+
+        return john;
     }
 
 
